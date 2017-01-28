@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Sign in', type: :feature do 
+RSpec.feature 'Sign in', type: :feature do
   given(:user) { build(:user) }
   given(:login_user) { create(:user) }
   given(:prototype) { build(:prototype, :with_sub_images) }
@@ -47,7 +47,7 @@ RSpec.feature 'Sign in', type: :feature do
     click_on 'Get Started'
     sign_in(user)
     expect(page).to have_selector '.alert-success', text: 'Signed in successfully.'
-    click_on 'New Photo'
+    click_on 'New Proto'
     post_prototype_by(user)
     expect(page).to have_selector '.alert-success', text: 'New prototype was successfully created'
   end

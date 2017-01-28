@@ -9,9 +9,6 @@ describe Comment do
     end
 
     it 'is associated with a user' do
-      user = create(:user)
-      comment = create(:comment, user: user)
-      expect(comment.user).to eq user
     end
   end
 end

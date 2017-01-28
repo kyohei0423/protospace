@@ -1,19 +1,12 @@
 class Prototype < ActiveRecord::Base
   belongs_to :user
-  has_many :captured_images, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :captured_images
+  has_many :likes
+  has_many :comments
 
   has_one :main_image, -> { where(status: 0) }, class_name: "CapturedImage"
 
-  accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images, limit: 4
-
   acts_as_taggable
-
-  validates :title,
-            :catch_copy,
-            :concept,
-            presence: true
 
   #kaminari
   paginates_per 8
@@ -30,7 +23,6 @@ class Prototype < ActiveRecord::Base
   end
 
   def posted_date
-    created_at.strftime('%b %d %a')
   end
 
   def liked_by?(user)
